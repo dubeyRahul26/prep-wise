@@ -31,9 +31,9 @@ app.use(cors({
 }));
 
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/generate", generateRoutes);
-app.use("/api/history", quizHistoryRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/generate', generateRoutes);
+app.use('/api/history', quizHistoryRoutes);
 
 // Serve static files from client
 if (process.env.NODE_ENV === "production") {

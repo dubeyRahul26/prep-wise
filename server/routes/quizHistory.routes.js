@@ -4,13 +4,13 @@ import { getSingleHistoryRecord, getUserHistory, saveQuizHistory } from "../cont
 const router = express.Router();
 
 // Save quiz history (POST /api/history)
-router.post("/", saveQuizHistory);
+router.post('/', saveQuizHistory);
 
 // Get one quiz review (GET /api/history/:userId/:historyId)
-router.get("/:userId/:historyId", getSingleHistoryRecord);
+router.get('/:userId/:historyId', getSingleHistoryRecord);
 
 // Get all quiz history for a user (GET /api/history/:userId)
-router.get("/:userId", getUserHistory);
+router.get('/:userId', getUserHistory);
 
 
 
