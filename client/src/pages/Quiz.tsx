@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../lib/axios.ts";
 import { useAuthStore } from "../store/useAuthStore";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
@@ -50,7 +50,7 @@ const Quiz: React.FC = () => {
         setCurrent((prev) => prev + 1);
       } else {
         try {
-          await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/history`, {
+          await axios.post(`/history`, {
             userId: user?.id,
             subject,
             score: newScore,
@@ -91,9 +91,9 @@ const Quiz: React.FC = () => {
       setError(null);
       try {
         const response = await axios.post(
-         `${import.meta.env.VITE_BACKEND_URL}/api/generate`,
+         `/generate`,
           { subject },
-          { validateStatus: (status) => status < 500 }
+          { validateStatus: (status: number) => status < 500 }
         );
 
         if (response.status === 429) {

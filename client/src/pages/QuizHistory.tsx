@@ -34,7 +34,7 @@ const QuizHistory: React.FC = () => {
       
       try {
         setLoading(true);
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/history/${user?.id}`);
+        const response = await axios.get(`/history/${user?.id}`);
         setQuizHistory(response.data);
       } catch (err: any) {
         console.error(err);

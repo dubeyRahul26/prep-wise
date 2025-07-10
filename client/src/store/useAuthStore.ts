@@ -24,7 +24,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async (email, password) => {
     set({ loading: true, error: null });
     try {
-      const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, { email, password }, { withCredentials: true });
+      const { data } = await axios.post(`/auth/login`, { email, password }, { withCredentials: true });
       set({ user: data.user, loading: false });
       localStorage.setItem("user", JSON.stringify(data.user));
       return true ;
@@ -37,7 +37,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   register: async (name, email, password) => {
     set({ loading: true, error: null });
     try {
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, { name, email, password }, { withCredentials: true });
+      await axios.post(`/auth/register`, { name, email, password }, { withCredentials: true });
       set({loading: false });
       return true ;
     } catch (err: any) {
@@ -49,7 +49,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   logout: async () => {
     set({ loading: true, error: null });
     try {
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`, {}, { withCredentials: true });
+      await axios.post(`/auth/logout`, {}, { withCredentials: true });
       set({ user: null, loading: false });
       localStorage.removeItem("theme");
       localStorage.removeItem("user");
