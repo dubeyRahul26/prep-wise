@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../lib/axios";
 import { useAuthStore } from "../store/useAuthStore"; // adjust path accordingly
 import Loading from "../components/Loading";
 
