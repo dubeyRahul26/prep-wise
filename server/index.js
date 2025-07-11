@@ -25,30 +25,35 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS (for dev or Render if frontend is on another domain)
-app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:5000",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:5000",
+    credentials: true,
+  })
+);
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/generate', generateRoutes);
-app.use('/api/history', quizHistoryRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/generate", generateRoutes);
+app.use("/api/history", quizHistoryRoutes);
 
 // Serve static files from client
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
-  app.get("*", (req, res) => {
+
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/dist/index.html"));
   });
 }
 
 // Start server
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("DB Connection Failed:", err);
   });
-}).catch((err) => {
-  console.error("DB Connection Failed:", err);
-});
