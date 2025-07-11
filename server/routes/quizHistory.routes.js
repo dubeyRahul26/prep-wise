@@ -1,5 +1,4 @@
 import express from "express";
-import QuizHistory from "../models/quizHistory.model.js"; 
 import { getSingleHistoryRecord, getUserHistory, saveQuizHistory } from "../controllers/quizHistory.controller.js";
 const router = express.Router();
 
