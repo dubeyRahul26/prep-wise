@@ -1,4 +1,5 @@
 export const allowedSubjects: string[] = [
+  // Core Academic Subjects
   "Mathematics",
   "Algebra",
   "Geometry",
@@ -8,11 +9,6 @@ export const allowedSubjects: string[] = [
   "Physics",
   "Chemistry",
   "Biology",
-  "Computer Science",
-  "Information Technology",
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Data Science",
   "English",
   "Grammar",
   "Literature",
@@ -29,21 +25,107 @@ export const allowedSubjects: string[] = [
   "Astronomy",
   "Philosophy",
   "Ethics",
+
+  // Business & Social Studies
   "Business Studies",
   "Accounting",
   "Finance",
   "Marketing",
   "Entrepreneurship",
   "Law",
+
+  // Arts & Humanities
   "Art",
   "Music",
   "Drama",
+  "Public Speaking",
+
+  // Health & Physical Education
   "Health",
   "Physical Education",
+
+  // General Knowledge & Current Affairs
   "General Knowledge",
   "Current Affairs",
-  "Public Speaking",
+
+  // Programming & Development
   "Programming",
+  "Software Engineering",
   "Web Development",
+  "Frontend Development",
+  "Backend Development",
+  "Full Stack Development",
+  "Mobile App Development",
+  "Game Development",
+
+  // Frontend Development
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Vue.js",
+  "Angular",
+  "Svelte",
+  "Tailwind CSS",
+  "Bootstrap",
+
+  // Backend & Databases
+  "Node.js",
+  "Express.js",
+  "RESTful APIs",
+  "GraphQL",
+  "Database Systems",
+  "SQL",
+  "MongoDB",
+  "Firebase",
+
+  // DevOps & Cloud Infrastructure
+  "Cloud Computing",
+  "AWS",
+  "Azure",
+  "Google Cloud Platform",
+  "Docker",
+  "Kubernetes",
+  "DevOps",
+  "CI/CD",
+
+  // Cybersecurity & Systems
   "Cybersecurity",
+  "Computer Networks",
+  "Operating Systems",
+  "Linux",
+  "Blockchain Technology",
+  "Cryptography",
+
+  // Hardware & Engineering
+  "Computer Architecture",
+  "Digital Logic Design",
+  "Embedded Systems",
+  "Internet of Things (IoT)",
+  "Electrical Engineering",
+  "Electronics",
+  "Mechanical Engineering",
+  "Civil Engineering",
+  "Aerospace Engineering",
+  "Robotics",
+  "Control Systems",
+  "Signal Processing",
+
+  // Advanced Technologies
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Deep Learning",
+  "Natural Language Processing",
+  "Computer Vision",
+  "Data Science",
+  "Data Engineering",
+  "Big Data",
+  "Quantum Computing",
+  "Augmented Reality",
+  "Virtual Reality",
+  "3D Modeling",
+  "Simulation and Modeling",
+  "Human-Computer Interaction",
 ];
