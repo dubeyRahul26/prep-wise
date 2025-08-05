@@ -25,12 +25,14 @@ const Home: React.FC = () => {
           {user ? (
             <>
               <button
+                type="button"
                 onClick={() => navigate("/mock-test")}
                 className="px-6 py-3 text-lg font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-md transition transform hover:scale-105"
               >
                 Start Quiz
               </button>
               <button
+                type="button"
                 className="border border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white transition duration-300 px-6 py-3 rounded-xl text-base sm:text-lg shadow-sm hover:scale-105"
                 onClick={() => navigate("/quizHistory")}
               >
@@ -39,6 +41,7 @@ const Home: React.FC = () => {
             </>
           ) : (
             <button
+              type="button"
               onClick={() => navigate("/login")}
               className="px-6 py-3 text-lg font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl shadow-md transition transform hover:scale-105"
             >
