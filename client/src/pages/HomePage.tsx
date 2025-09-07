@@ -14,11 +14,12 @@ const Home: React.FC = () => {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-          Your personalized AI-powered mock test platform for{" "}
+          Your AI-driven learning and career companion:{" "}
           <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-            Frontend, Fullstack, AI/ML & Aptitude
-          </span>
-          . Practice smarter. Learn faster. 🚀
+            personalized quizzes, resume analysis, and job application
+            management
+          </span>{" "}
+          — all at your fingertips.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">

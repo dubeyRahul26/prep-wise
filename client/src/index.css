@@ -1,2 +1,46 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+
+/* Light theme scrollbar */
+#job-description::-webkit-scrollbar {
+  width: 8px;
+}
+#job-description::-webkit-scrollbar-thumb {
+  background-color: #3b82f6; /* blue-500 */
+  border-radius: 8px;
+}
+#job-description::-webkit-scrollbar-track {
+  background: #e5e7eb; /* gray-200 */
+  border-radius: 8px;
+}
+
+/* Dark theme scrollbar */
+.dark #job-description::-webkit-scrollbar-thumb {
+  background-color: #60a5fa; /* blue-400 */
+}
+.dark #job-description::-webkit-scrollbar-track {
+  background: #374151; /* gray-700 */
+}
+
+
+/* Light theme scrollbar */
+#feedback-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+#feedback-scroll::-webkit-scrollbar-thumb {
+  background-color: #3b82f6; /* blue-500 */
+  border-radius: 8px;
+}
+#feedback-scroll::-webkit-scrollbar-track {
+  background: #e5e7eb; /* gray-200 */
+  border-radius: 8px;
+}
+
+/* Dark theme scrollbar */
+.dark #feedback-scroll::-webkit-scrollbar-thumb {
+  background-color: #60a5fa; /* blue-400 */
+}
+.dark #feedback-scroll::-webkit-scrollbar-track {
+  background: #374151; /* gray-700 */
+}

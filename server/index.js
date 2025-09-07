@@ -10,6 +10,7 @@ import connectDB from "./db/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import generateRoutes from "./routes/generate.routes.js";
 import quizHistoryRoutes from "./routes/quizHistory.routes.js";
+import uploadRoute from './routes/resume.routes.js'
 
 // Config
 dotenv.config();
@@ -36,6 +37,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/generate", generateRoutes);
 app.use("/api/history", quizHistoryRoutes);
+app.use("/api/upload-resume", uploadRoute);
 
 // Serve static files from client
 if (process.env.NODE_ENV === "production") {
