@@ -29,11 +29,10 @@ export const analyzeResume = async (req, res) => {
 
     const jobDescription = req.body["Job-description"];
 
-    
     const prompt = `
 You are a career assistant.
 
-Compare the resume below with the job description and provide a JSON response in the following format:
+Compare the resume below with the job description and provide a JSON response in the exact following format:
 
 {
   "strengths": ["List of strengths as plain text strings without any markdown or special formatting."],
@@ -45,10 +44,13 @@ Compare the resume below with the job description and provide a JSON response in
 }
 
 Important Requirements:
-- Do NOT include any markdown syntax (no **bold**, no bullet points, no lists in the string items).
-- Each item should be a plain text string.
-- The learningResources field should be an array of objects, each with a "title" and a valid "url".
-- Make sure the JSON is well-formatted and parsable without additional post-processing.
+- Do NOT include any markdown syntax (no **bold**, no bullet points, no special characters in string items).
+- Each item must be a plain text string without any code blocks or backticks.
+- The learningResources field must be an array of objects, each with:
+    - "title": A concise, descriptive title of the resource.
+    - "url": A fully working URL that is currently valid and points to a helpful online resource related to the missing skills or suggestions.
+- Ensure the JSON is well-formatted, valid, and parsable by JSON.parse() without errors.
+- Do not wrap the output in code blocks or add extra text outside of the JSON object.
 
 Resume:
 ${resumeText}

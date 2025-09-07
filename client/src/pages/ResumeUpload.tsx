@@ -47,10 +47,10 @@ export default function ResumeUpload() {
 
     try {
       const response = await axios.post("/upload-resume", formData);
+      console.log("Response : " , response.data.feedback )
       const feedbackObj = JSON.parse(response.data.feedback);
 
       setUploadSuccess(true);
-      console.log("Extracted Text:", response.data.feedback);
       console.log("Extracted Text parsed:", feedbackObj);
       setFeedback(feedbackObj);
     } catch (err) {
