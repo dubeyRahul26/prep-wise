@@ -37,25 +37,25 @@ const Navbar: React.FC = () => {
                 onClick={() => navigate("/mock-test")}
                 className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                Start Quiz
+                Take Quiz
               </button>
               <button
                 onClick={() => navigate("/quizHistory")}
                 className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                History
+                Quiz History
               </button>
               <button
                 onClick={() => navigate("/resumeUpload")}
                 className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                Resume
+                Resume Analyzer
               </button>
               <button
                 onClick={handleLogout}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow-sm transition"
               >
-                Logout
+                 Sign Out
               </button>
             </>
           ) : (
@@ -64,13 +64,13 @@ const Navbar: React.FC = () => {
                 onClick={() => navigate("/login")}
                 className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                Login
+                 Sign In
               </button>
               <button
                 onClick={() => navigate("/register")}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md shadow-sm transition"
               >
-                Register
+                Sign Up
               </button>
             </>
           )}
@@ -102,7 +102,7 @@ const Navbar: React.FC = () => {
                 }}
                 className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                Start Quiz
+                Take Quiz
               </button>
               <button
                 onClick={() => {
@@ -111,19 +111,19 @@ const Navbar: React.FC = () => {
                 }}
                 className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                History
+                Quiz History
               </button>
               <button
                 onClick={() => navigate("/resumeUpload")}
                 className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                Resume
+                Resume Analyzer
               </button>
               <button
                 onClick={handleLogout}
                 className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow-sm transition"
               >
-                Logout
+                Sign Out
               </button>
             </>
           ) : (
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
                 }}
                 className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                Login
+                Sign In
               </button>
               <button
                 onClick={() => {
@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
                 }}
                 className="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md shadow-sm transition"
               >
-                Register
+                Sign Up
               </button>
             </>
           )}
