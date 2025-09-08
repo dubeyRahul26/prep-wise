@@ -15,6 +15,7 @@ import QuizHistory from "./pages/QuizHistory";
 import Layout from "./components/Layout";
 import StartMockTest from "./pages/StartMockTest";
 import ResumeUpload from "./pages/ResumeUpload";
+import Dashboard from "./pages/Dashboard";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuthStore();
@@ -85,6 +86,16 @@ const App: React.FC = () => {
             <ProtectedRoute>
               <Layout>
                 <ResumeUpload />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Dashboard />
               </Layout>
             </ProtectedRoute>
           }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { useAuthStore } from "../store/useAuthStore";
@@ -8,6 +8,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null); // Ref for the navbar container
 
   const handleLogout = async () => {
     await logout();
@@ -15,8 +16,30 @@ const Navbar: React.FC = () => {
     setMenuOpen(false);
   };
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
   return (
-    <nav className="w-full fixed top-0 z-50 h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <nav
+      ref={navRef} // Attach ref here
+      className="w-full fixed top-0 z-50 h-16 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         {/* Logo */}
         <div
@@ -52,10 +75,16 @@ const Navbar: React.FC = () => {
                 Resume Analyzer
               </button>
               <button
+                onClick={() => navigate("/dashboard")}
+                className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
+              >
+                Job Tracker
+              </button>
+              <button
                 onClick={handleLogout}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow-sm transition"
               >
-                 Sign Out
+                Sign Out
               </button>
             </>
           ) : (
@@ -64,7 +93,7 @@ const Navbar: React.FC = () => {
                 onClick={() => navigate("/login")}
                 className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
-                 Sign In
+                Sign In
               </button>
               <button
                 onClick={() => navigate("/register")}
@@ -114,10 +143,22 @@ const Navbar: React.FC = () => {
                 Quiz History
               </button>
               <button
-                onClick={() => navigate("/resumeUpload")}
-                className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
+                onClick={() => {
+                  navigate("/resumeUpload");
+                  setMenuOpen(false);
+                }}
+                className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
               >
                 Resume Analyzer
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/dashboard");
+                  setMenuOpen(false);
+                }}
+                className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition font-medium"
+              >
+                Job Tracker
               </button>
               <button
                 onClick={handleLogout}
