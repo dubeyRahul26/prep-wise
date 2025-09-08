@@ -10,7 +10,8 @@ import connectDB from "./db/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import generateRoutes from "./routes/generate.routes.js";
 import quizHistoryRoutes from "./routes/quizHistory.routes.js";
-import uploadRoute from './routes/resume.routes.js'
+import uploadRoute from "./routes/resume.routes.js";
+import applicationRoutes from "./routes/application.routes.js";
 
 // Config
 dotenv.config();
@@ -38,11 +39,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/generate", generateRoutes);
 app.use("/api/history", quizHistoryRoutes);
 app.use("/api/upload-resume", uploadRoute);
+app.use("/api/applications", applicationRoutes);
 
 // Serve static files from client
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
-
 
   app.get("/{*splat}", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/dist/index.html"));
