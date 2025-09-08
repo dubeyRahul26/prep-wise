@@ -50,6 +50,13 @@ const Home: React.FC = () => {
               >
                 Analyze Resume
               </button>
+              <button
+                type="button"
+                onClick={() => navigate("/dashboard")}
+                className="border border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white transition duration-300 px-6 py-3 rounded-xl text-base sm:text-lg shadow-sm hover:scale-105"
+              >
+                Job Tracker
+              </button>
             </>
           ) : (
             <button

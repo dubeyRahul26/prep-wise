@@ -78,6 +78,7 @@ const Dashboard = () => {
       status: app.status,
       notes: app.notes || "",
     });
+
     setFormData({
       title: app.title || "",
       company: app.company || "",
@@ -89,11 +90,13 @@ const Dashboard = () => {
       status: app.status,
       notes: app.notes || "",
     });
+
     setShowFormModal(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const payload = {
       ...formData,
       applicationDate: formData.applicationDate?.toISOString() || "",
@@ -161,7 +164,13 @@ const Dashboard = () => {
               <p className="text-indigo-600 dark:text-indigo-400 font-medium truncate">
                 {app.company}
               </p>
-              {app.link && <p className="text-blue-500 truncate">Job Link</p>}
+              {app.link && (
+                <p className="text-blue-500 truncate">
+                  <a href={app.link} target="_blank" rel="noopener noreferrer">
+                    Job Link
+                  </a>
+                </p>
+              )}
               <p className="text-sm sm:text-base">
                 <strong>Status:</strong>{" "}
                 <span className="capitalize">{app.status}</span>
@@ -181,7 +190,7 @@ const Dashboard = () => {
               )}
             </div>
 
-            {/* Buttons on card */}
+            {/* Buttons */}
             <div className="flex justify-end gap-2 sm:gap-3 mt-4 flex-wrap">
               <button
                 onClick={(e) => {
@@ -213,6 +222,7 @@ const Dashboard = () => {
             <h2 className="text-2xl sm:text-3xl font-semibold text-indigo-600 mb-5">
               {editingApp ? "Edit Job Application" : "New Job Application"}
             </h2>
+
             <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -228,6 +238,7 @@ const Dashboard = () => {
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Company Name
@@ -242,6 +253,7 @@ const Dashboard = () => {
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Job Link
@@ -255,39 +267,41 @@ const Dashboard = () => {
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Application Date
                 </label>
                 <DatePicker
                   selected={formData.applicationDate}
-                  onChange={(date: Date | null) =>
+                  onChange={(date) =>
                     setFormData({ ...formData, applicationDate: date })
                   }
-                  dateFormat="dd-MM-yyyy"
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-                  placeholderText="Select a date"
+                  dateFormat="dd-MM-yyyy"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Deadline
                 </label>
                 <DatePicker
                   selected={formData.deadline}
-                  onChange={(date: Date | null) =>
+                  onChange={(date) =>
                     setFormData({ ...formData, deadline: date })
                   }
-                  dateFormat="dd-MM-yyyy"
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-                  placeholderText="Select a date"
+                  dateFormat="dd-MM-yyyy"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Status
                 </label>
                 <select
+                  required
                   value={formData.status}
                   onChange={(e) =>
                     setFormData({
@@ -303,6 +317,7 @@ const Dashboard = () => {
                   <option value="Offer">Offer</option>
                 </select>
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Notes
@@ -312,76 +327,61 @@ const Dashboard = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, notes: e.target.value })
                   }
-                  className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition resize-none"
-                  rows={4}
-                  placeholder="Add any relevant notes..."
+                  className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition resize-none scrollbar-none"
                 />
               </div>
-              <div className="flex justify-end gap-2 mt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowFormModal(false)}
-                  className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow"
-                >
-                  {editingApp ? "Update" : "Add"}
-                </button>
-              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-2xl py-2 text-lg transition"
+              >
+                {editingApp ? "Update Application" : "Add Application"}
+              </button>
             </form>
           </div>
         </Modal>
       )}
 
-      {/* View-only Modal */}
+      {/* Detail Modal */}
       {selectedApp && (
         <Modal onClose={() => setSelectedApp(null)}>
-          <div className="max-h-[80vh] w-full overflow-y-auto p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-md space-y-4 scrollbar-none">
-            <div className="p-4 space-y-3">
-              <h2 className="text-2xl font-semibold">{selectedApp.title}</h2>
-              <p className="text-indigo-600 dark:text-indigo-400 font-medium">
-                {selectedApp.company}
-              </p>
-              {selectedApp.link && (
+          <div className="p-6">
+            <h2 className="text-2xl font-semibold text-indigo-600 mb-4">
+              {selectedApp.title}
+            </h2>
+            <p className="mb-2">
+              <strong>Company:</strong> {selectedApp.company}
+            </p>
+            {selectedApp.link && (
+              <p className="mb-2">
+                <strong>Job Link:</strong>{" "}
                 <a
                   href={selectedApp.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500"
                 >
-                  Job Link
+                  {selectedApp.link}
                 </a>
-              )}
-              <p>
-                <strong>Status:</strong> {selectedApp.status}
               </p>
-              <p>
-                <strong>Applied On:</strong>{" "}
-                {formatDate(selectedApp.applicationDate)}
+            )}
+            <p className="mb-2">
+              <strong>Status:</strong> {selectedApp.status}
+            </p>
+            <p className="mb-2">
+              <strong>Applied On:</strong>{" "}
+              {formatDate(selectedApp.applicationDate)}
+            </p>
+            {selectedApp.deadline && (
+              <p className="mb-2">
+                <strong>Deadline:</strong> {formatDate(selectedApp.deadline)}
               </p>
-              {selectedApp.deadline && (
-                <p>
-                  <strong>Deadline:</strong> {formatDate(selectedApp.deadline)}
-                </p>
-              )}
-              {selectedApp.notes && (
-                <p>
-                  <strong>Notes:</strong> {selectedApp.notes}
-                </p>
-              )}
-              <div className="flex justify-end mt-4">
-                <button
-                  onClick={() => setSelectedApp(null)}
-                  className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
+            )}
+            {selectedApp.notes && (
+              <p className="mt-3">
+                <strong>Notes:</strong> {selectedApp.notes}
+              </p>
+            )}
           </div>
         </Modal>
       )}

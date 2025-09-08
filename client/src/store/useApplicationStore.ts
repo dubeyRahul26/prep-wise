@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axiosInstance from "../lib/axios.ts";
+import axiosInstance from "../lib/axios";
 
 interface JobApplication {
   _id: string;
@@ -33,7 +33,11 @@ export const useApplicationStore = create<ApplicationState>((set) => ({
       const { data } = await axiosInstance.get("/applications");
       set({ applications: data, loading: false });
     } catch (err: any) {
-      set({ error: err.response?.data?.message || err.message, loading: false });
+      if (err.response?.status === 401) {
+        set({ applications: [], error: "Unauthorized. Please log in.", loading: false });
+      } else {
+        set({ error: err.response?.data?.message || err.message, loading: false });
+      }
     }
   },
 
