@@ -63,12 +63,12 @@ Ensure output is strictly formatted JSON with no extra text.`;
 
     try {
       const flashModel = genAI.getGenerativeModel({
-        model: "gemini-1.5-flash",
+        model: "gemini-2.5-flash",
       });
       text = await generateWithRetry(flashModel, prompt);
     } catch (flashErr) {
       console.warn("Flash failed, falling back to pro:", flashErr.message);
-      const proModel = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+      const proModel = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
       try {
         const proResult = await proModel.generateContent(prompt);
